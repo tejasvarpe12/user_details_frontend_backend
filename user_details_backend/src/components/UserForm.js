@@ -7,9 +7,11 @@ const UserForm = () => {
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
   const [message, setMessage] = useState("");
+  const [error, setError] = useState(false)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("User saved:", name, email,age);
     try {
       const response = await axios.post("http://localhost:5000/api/users", {
         name,
@@ -22,8 +24,9 @@ const UserForm = () => {
       setAge("");
       setMessage("Details saved successfully");
     } catch (error) {
+      setError(true);
       console.error("Error saving user:", error);
-      setMessage("Details saved successfully");
+      setMessage("Error occured while saving user details...");
     }
   };
 
@@ -57,7 +60,7 @@ const UserForm = () => {
         </div>
         <button type="submit">Save</button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p style={{color : error ? "red" : "green"}}>{message}</p>}
     </>
   );
 };

@@ -15,4 +15,9 @@ button{
     background-color: rgb(12, 204, 214);
     margin-top: 20px;
     margin-left: 210px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: aqua;
 }
